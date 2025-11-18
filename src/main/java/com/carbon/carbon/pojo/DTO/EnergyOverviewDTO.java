@@ -1,10 +1,10 @@
 package com.carbon.carbon.pojo.DTO;
 
-public class EnergyOverview {
+public class EnergyOverviewDTO {
     private Integer electricityTotal;
     private Integer waterTotal;
     private Integer carbonTotal;
-    public EnergyOverview(Integer electricityTotal, Integer waterTotal, Integer carbonTotal) {
+    public EnergyOverviewDTO(Integer electricityTotal, Integer waterTotal, Integer carbonTotal) {
         this.electricityTotal = electricityTotal;
         this.waterTotal = waterTotal;
         this.carbonTotal = carbonTotal;

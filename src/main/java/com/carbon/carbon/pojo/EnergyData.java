@@ -2,7 +2,7 @@ package com.carbon.carbon.pojo;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name = "energy_data")
 @Entity
@@ -11,7 +11,7 @@ public class EnergyData {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
     @Column(name = "electricity")
     private Integer electricity;
     @Column(name = "water")
@@ -33,11 +33,11 @@ public class EnergyData {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

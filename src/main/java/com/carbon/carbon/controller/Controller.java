@@ -1,8 +1,9 @@
 package com.carbon.carbon.controller;
 
 import com.carbon.carbon.ResponseMessage;
-import com.carbon.carbon.pojo.DTO.EnergyOverview;
-import com.carbon.carbon.pojo.DTO.EnergyRatio;
+import com.carbon.carbon.pojo.DTO.DataSummaryDTO;
+import com.carbon.carbon.pojo.DTO.EnergyOverviewDTO;
+import com.carbon.carbon.pojo.DTO.EnergyRatioDTO;
 import com.carbon.carbon.pojo.InventoryAlert;
 import com.carbon.carbon.pojo.OutBoundApply;
 import com.carbon.carbon.pojo.PurchaseContract;
@@ -99,17 +100,21 @@ public class Controller {
     }
     //能耗总览接口
     @GetMapping("/visualization/energy/overview")
-    public EnergyOverview getEnergyOverview(){
-        return carbonService.getEnergyOverview();
+    public ResponseMessage<EnergyOverviewDTO> getEnergyOverview(){
+        return ResponseMessage.success(carbonService.getEnergyOverview());
     }
     //能耗占比数据接口
     @GetMapping("/visualization/energy/ratio")
-    public EnergyRatio getEnergyRatio(){
-        return carbonService.getEnergyRatio();
+    public ResponseMessage<EnergyRatioDTO> getEnergyRatio(){
+        return ResponseMessage.success(carbonService.getEnergyRatio());
     }
     //库存预警数据接口
     @GetMapping("/visualization/inventory/alert")
-    public List<InventoryAlert> getInventoryAlert(){
-        return carbonService.getInventoryAlert();
+    public ResponseMessage<List<InventoryAlert>> getInventoryAlert(){
+        return ResponseMessage.success(carbonService.getInventoryAlert());
+    }
+    @GetMapping("/visualization/data/summary")
+    public ResponseMessage<DataSummaryDTO> getDataSummary(){
+        return ResponseMessage.success(carbonService.getDataSummary());
     }
 }

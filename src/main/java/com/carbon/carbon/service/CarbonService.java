@@ -1,8 +1,9 @@
 package com.carbon.carbon.service;
 
 
-import com.carbon.carbon.pojo.DTO.EnergyOverview;
-import com.carbon.carbon.pojo.DTO.EnergyRatio;
+import com.carbon.carbon.pojo.DTO.DataSummaryDTO;
+import com.carbon.carbon.pojo.DTO.EnergyOverviewDTO;
+import com.carbon.carbon.pojo.DTO.EnergyRatioDTO;
 import com.carbon.carbon.pojo.InventoryAlert;
 import com.carbon.carbon.pojo.OutBoundApply;
 import com.carbon.carbon.pojo.PurchaseContract;
@@ -131,17 +132,23 @@ public interface CarbonService {
      *
      * @return
      */
-    EnergyOverview getEnergyOverview();
+    EnergyOverviewDTO getEnergyOverview();
 
     /**
      *
      * @return
      */
-    EnergyRatio getEnergyRatio();
+    EnergyRatioDTO getEnergyRatio();
 
     /**
      *
      * @return
      */
     List<InventoryAlert> getInventoryAlert();
+
+    /**
+     *
+     * @return
+     */
+    DataSummaryDTO getDataSummary();
 }

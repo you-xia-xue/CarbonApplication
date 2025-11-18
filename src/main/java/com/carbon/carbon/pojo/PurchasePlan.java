@@ -2,7 +2,7 @@ package com.carbon.carbon.pojo;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name="purchase_plan")
 @Entity
@@ -15,13 +15,13 @@ public class PurchasePlan {
     @Column(name = "applicant")
     private String applicant;
     @Column(name = "apply_date")
-    private LocalDateTime applyDate;
+    private LocalDate applyDate;
     @Column(name = "apply_status")
     private String applyStatus;
     @Column(name = "auditor")
     private String auditor;
     @Column(name = "audit_date")
-    private LocalDateTime auditDate;
+    private LocalDate auditDate;
     @Column(name = "audit_status")
     private String auditStatus;
 
@@ -33,11 +33,11 @@ public class PurchasePlan {
         this.auditStatus = auditStatus;
     }
 
-    public LocalDateTime getAuditDate() {
+    public LocalDate getAuditDate() {
         return auditDate;
     }
 
-    public void setAuditDate(LocalDateTime auditDate) {
+    public void setAuditDate(LocalDate auditDate) {
         this.auditDate = auditDate;
     }
 
@@ -57,11 +57,11 @@ public class PurchasePlan {
         this.applyStatus = applyStatus;
     }
 
-    public LocalDateTime getApplyDate() {
+    public LocalDate getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(LocalDateTime applyDate) {
+    public void setApplyDate(LocalDate applyDate) {
         this.applyDate = applyDate;
     }
 

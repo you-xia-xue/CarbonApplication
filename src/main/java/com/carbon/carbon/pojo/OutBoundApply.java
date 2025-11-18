@@ -2,7 +2,7 @@ package com.carbon.carbon.pojo;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name = "outbound_apply")
 @Entity
@@ -29,9 +29,9 @@ public class OutBoundApply {
     @Column(name = "applicant")
     private String applicant;
     @Column(name = "apply_date")
-    private LocalDateTime applyDate;
+    private LocalDate applyDate;
     @Column(name = "audit_date")
-    private LocalDateTime auditDate;
+    private LocalDate auditDate;
     @Column(name = "audit_status")
     private String auditStatus;
 
@@ -108,19 +108,19 @@ public class OutBoundApply {
         this.applicant = applicant;
     }
 
-    public LocalDateTime getApplyDate() {
+    public LocalDate getApplyDate() {
         return applyDate;
     }
 
-    public void setApplyDate(LocalDateTime applyDate) {
+    public void setApplyDate(LocalDate applyDate) {
         this.applyDate = applyDate;
     }
 
-    public LocalDateTime getAuditDate() {
+    public LocalDate getAuditDate() {
         return auditDate;
     }
 
-    public void setAuditDate(LocalDateTime auditDate) {
+    public void setAuditDate(LocalDate auditDate) {
         this.auditDate = auditDate;
     }
 

@@ -2,7 +2,7 @@ package com.carbon.carbon.pojo;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Table(name = "sales_data")
 @Entity
@@ -12,7 +12,7 @@ public class SaleData {
     @Column(name = "id")
     private Integer id;
     @Column(name = "date")
-    private LocalDateTime date;
+    private LocalDate date;
     @Column(name = "total_sales")
     private Double totalSales;
     @Column(name = "contract_amount")
@@ -26,11 +26,11 @@ public class SaleData {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

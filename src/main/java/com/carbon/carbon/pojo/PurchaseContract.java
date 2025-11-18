@@ -3,7 +3,6 @@ package com.carbon.carbon.pojo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Table(name = "purchase_contract")
 @Entity
@@ -24,17 +23,17 @@ public class PurchaseContract {
     @Column(name = "delivery_method")
     private String deliveryMethod;
     @Column(name = "sign_date")
-    private LocalDateTime signDate;
+    private LocalDate signDate;
     @Column(name = "applicant")
     private String applicant;
     @Column(name = "apply_time")
-    private LocalDateTime applyTime;
+    private LocalDate applyTime;
     @Column(name = "apply_status")
     private String applyStatus;
     @Column(name = "auditor")
     private String auditor;
     @Column(name = "audit_time")
-    private LocalDateTime auditTime;
+    private LocalDate auditTime;
     @Column(name = "audit_status")
     private String auditStatus;
 
@@ -94,11 +93,11 @@ public class PurchaseContract {
         this.deliveryMethod = deliveryMethod;
     }
 
-    public LocalDateTime getSignDate() {
+    public LocalDate getSignDate() {
         return signDate;
     }
 
-    public void setSignDate(LocalDateTime signDate) {
+    public void setSignDate(LocalDate signDate) {
         this.signDate = signDate;
     }
 
@@ -110,11 +109,11 @@ public class PurchaseContract {
         this.applicant = applicant;
     }
 
-    public LocalDateTime getApplyTime() {
+    public LocalDate getApplyTime() {
         return applyTime;
     }
 
-    public void setApplyTime(LocalDateTime applyTime) {
+    public void setApplyTime(LocalDate applyTime) {
         this.applyTime = applyTime;
     }
 
@@ -134,11 +133,11 @@ public class PurchaseContract {
         this.auditor = auditor;
     }
 
-    public LocalDateTime getAuditTime() {
+    public LocalDate getAuditTime() {
         return auditTime;
     }
 
-    public void setAuditTime(LocalDateTime auditTime) {
+    public void setAuditTime(LocalDate auditTime) {
         this.auditTime = auditTime;
     }
 

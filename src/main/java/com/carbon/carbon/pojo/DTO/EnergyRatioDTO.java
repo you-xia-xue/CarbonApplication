@@ -1,12 +1,12 @@
 package com.carbon.carbon.pojo.DTO;
 
-public class EnergyRatio {
+public class EnergyRatioDTO {
     private Integer officeElectricity;
     private Integer officeWater;
     private Integer productionWater;
     private Integer productionElectricity;
     private Integer totalEnergy;
-    public EnergyRatio(Integer officeElectricity, Integer officeWater, Integer productionWater, Integer productionElectricity) {
+    public EnergyRatioDTO(Integer officeElectricity, Integer officeWater, Integer productionWater, Integer productionElectricity) {
         int sum = productionElectricity + officeElectricity+officeWater+productionWater;
         this.officeElectricity = (officeElectricity/sum)*100;
         this.officeWater = (officeWater/sum)*100;
