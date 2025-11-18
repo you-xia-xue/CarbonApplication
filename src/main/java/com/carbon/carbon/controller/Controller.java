@@ -1,6 +1,9 @@
 package com.carbon.carbon.controller;
 
 import com.carbon.carbon.ResponseMessage;
+import com.carbon.carbon.pojo.DTO.EnergyOverview;
+import com.carbon.carbon.pojo.DTO.EnergyRatio;
+import com.carbon.carbon.pojo.InventoryAlert;
 import com.carbon.carbon.pojo.OutBoundApply;
 import com.carbon.carbon.pojo.PurchaseContract;
 import com.carbon.carbon.pojo.PurchasePlan;
@@ -11,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -92,5 +96,20 @@ public class Controller {
     public ResponseMessage<PurchaseContract> auditPurchaseContract(@RequestParam("id") Integer id,@RequestParam String auditStatus,@RequestParam(required = false) String auditOpinion){
         PurchaseContract purchaseContract = carbonService.auditPurchaseContract(id,auditStatus,auditOpinion);
         return  ResponseMessage.success(purchaseContract);
+    }
+    //能耗总览接口
+    @GetMapping("/visualization/energy/overview")
+    public EnergyOverview getEnergyOverview(){
+        return carbonService.getEnergyOverview();
+    }
+    //能耗占比数据接口
+    @GetMapping("/visualization/energy/ratio")
+    public EnergyRatio getEnergyRatio(){
+        return carbonService.getEnergyRatio();
+    }
+    //库存预警数据接口
+    @GetMapping("/visualization/inventory/alert")
+    public List<InventoryAlert> getInventoryAlert(){
+        return carbonService.getInventoryAlert();
     }
 }

@@ -1,11 +1,9 @@
 package com.carbon.carbon.service;
 
-import com.carbon.carbon.DAO.OutBoundRepository;
-import com.carbon.carbon.DAO.PurchaseContractRepositiory;
-import com.carbon.carbon.DAO.PurchasePlanRepository;
-import com.carbon.carbon.pojo.OutBoundApply;
-import com.carbon.carbon.pojo.PurchaseContract;
-import com.carbon.carbon.pojo.PurchasePlan;
+import com.carbon.carbon.DAO.*;
+import com.carbon.carbon.pojo.*;
+import com.carbon.carbon.pojo.DTO.EnergyOverview;
+import com.carbon.carbon.pojo.DTO.EnergyRatio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class CarbonServiceImpl implements CarbonService {
@@ -24,6 +23,10 @@ public class CarbonServiceImpl implements CarbonService {
     private PurchasePlanRepository purchasePlanRepository;
     @Autowired
     private PurchaseContractRepositiory purchaseContractRepositiory;
+    @Autowired
+    private EnergyDataRepository energyDataRepository;
+    @Autowired
+    private InventoryAlertRepository inventoryAlertRepository;
 
     @Override
     public Page<OutBoundApply> queryOutboundApplyByPage(Integer page, Integer size, Integer billNo, String businessType, String customer, String applicant, String applyDateStart, String applyDateEnd, String applyStatus, String auditor, LocalDateTime auditDateStart, LocalDateTime auditDateEnd, String auditStatus, String status) {
@@ -80,5 +83,29 @@ public class CarbonServiceImpl implements CarbonService {
         PurchaseContract purchaseContract = purchaseContractRepositiory.findById(id).orElseThrow(()->new RuntimeException("该id无对象"));
         purchaseContract.setAuditStatus(auditStatus);
         return purchaseContractRepositiory.save(purchaseContract);
+    }
+
+    @Override
+    public EnergyOverview getEnergyOverview() {
+        return new EnergyOverview(
+                energyDataRepository.sumElectricity(),
+                energyDataRepository.sumWater(),
+                energyDataRepository.sumCarbon()
+        );
+    }
+
+    @Override
+    public EnergyRatio getEnergyRatio() {
+        return new EnergyRatio(
+                energyDataRepository.sumOfficeElectricity(),
+                energyDataRepository.sumOfficeWater(),
+                energyDataRepository.sumProductionWater(),
+                energyDataRepository.sumProductionElectricity()
+        );
+    }
+
+    @Override
+    public List<InventoryAlert> getInventoryAlert() {
+        return inventoryAlertRepository.findAll();
     }
 }

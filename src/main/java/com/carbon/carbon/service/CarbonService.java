@@ -1,12 +1,16 @@
 package com.carbon.carbon.service;
 
 
+import com.carbon.carbon.pojo.DTO.EnergyOverview;
+import com.carbon.carbon.pojo.DTO.EnergyRatio;
+import com.carbon.carbon.pojo.InventoryAlert;
 import com.carbon.carbon.pojo.OutBoundApply;
 import com.carbon.carbon.pojo.PurchaseContract;
 import com.carbon.carbon.pojo.PurchasePlan;
 import org.springframework.data.domain.Page;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface CarbonService {
 
@@ -122,4 +126,22 @@ public interface CarbonService {
      * @return
      */
     PurchaseContract auditPurchaseContract(Integer id, String auditStatus, String auditOpinion);
+
+    /**
+     *
+     * @return
+     */
+    EnergyOverview getEnergyOverview();
+
+    /**
+     *
+     * @return
+     */
+    EnergyRatio getEnergyRatio();
+
+    /**
+     *
+     * @return
+     */
+    List<InventoryAlert> getInventoryAlert();
 }

@@ -6,4 +6,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EnergyDataRepository extends JpaRepository<EnergyData,Integer> {
+    Integer sumElectricity();
+    Integer sumWater();
+    Integer sumCarbon();
+    Integer sumOfficeWater();
+    Integer sumOfficeElectricity();
+    Integer sumProductionWater();
+    Integer sumProductionElectricity();
 }
