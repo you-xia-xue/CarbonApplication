@@ -3,6 +3,7 @@ package com.carbon.carbon.pojo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "purchase_contract")
 @Entity
@@ -27,13 +28,13 @@ public class PurchaseContract {
     @Column(name = "applicant")
     private String applicant;
     @Column(name = "apply_time")
-    private LocalDate applyTime;
+    private LocalDateTime applyTime;
     @Column(name = "apply_status")
     private String applyStatus;
     @Column(name = "auditor")
     private String auditor;
     @Column(name = "audit_time")
-    private LocalDate auditTime;
+    private LocalDateTime auditTime;
     @Column(name = "audit_status")
     private String auditStatus;
 
@@ -109,11 +110,11 @@ public class PurchaseContract {
         this.applicant = applicant;
     }
 
-    public LocalDate getApplyTime() {
+    public LocalDateTime getApplyTime() {
         return applyTime;
     }
 
-    public void setApplyTime(LocalDate applyTime) {
+    public void setApplyTime(LocalDateTime applyTime) {
         this.applyTime = applyTime;
     }
 
@@ -133,11 +134,11 @@ public class PurchaseContract {
         this.auditor = auditor;
     }
 
-    public LocalDate getAuditTime() {
+    public LocalDateTime getAuditTime() {
         return auditTime;
     }
 
-    public void setAuditTime(LocalDate auditTime) {
+    public void setAuditTime(LocalDateTime auditTime) {
         this.auditTime = auditTime;
     }
 

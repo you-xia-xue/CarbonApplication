@@ -3,6 +3,7 @@ package com.carbon.carbon.pojo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Table(name = "energy_data")
 @Entity

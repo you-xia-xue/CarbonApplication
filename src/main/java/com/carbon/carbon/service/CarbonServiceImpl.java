@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -30,9 +31,25 @@ public class CarbonServiceImpl implements CarbonService {
     private InventoryAlertRepository inventoryAlertRepository;
     @Autowired
     private SalesDataRepository salesDataRepository;
+    @Autowired
+    private ProductionDataRepository productionDataRepository;
 
-    @Override
-    public Page<OutBoundApply> queryOutboundApplyByPage(Integer page, Integer size, Integer billNo, String businessType, String customer, String applicant, String applyDateStart, String applyDateEnd, String applyStatus, String auditor, LocalDateTime auditDateStart, LocalDateTime auditDateEnd, String auditStatus, String status) {
+
+    public Page<OutBoundApply> queryOutboundApplyByPage(
+            Integer page,
+            Integer size,
+            Integer billNo,
+            String businessType,
+            String customer,
+            String applicant,
+            LocalDate applyDateStart,
+            LocalDate applyDateEnd,
+            String applyStatus,
+            String auditor,
+            LocalDate auditDateStart,
+            LocalDate auditDateEnd,
+            String auditStatus,
+            String status) {
         if (page == null) page = 1;
         if (size == null) size = 10;
         Pageable pageable = PageRequest.of(
@@ -42,6 +59,9 @@ public class CarbonServiceImpl implements CarbonService {
         );
         return outBoundRepository.findAll(pageable);
     }
+
+
+
     @Transactional
     @Override
     public OutBoundApply auditOutboundApply(int id, String auditStatus, String auditOpinion) {
@@ -123,4 +143,20 @@ public class CarbonServiceImpl implements CarbonService {
                 energyDataRepository.sumCarbonByDay(),
                 energyDataRepository.findFirst8ByOrderByCarbonDesc());
     }
+
+    @Override
+    public List<SaleData> getSaleStatistics() {
+        return salesDataRepository.findAll();
+    }
+
+    @Override
+    public List<SaleData> getSaleRanking() {
+        return salesDataRepository.findFirst8ByOrderByTotalSalesDesc();
+    }
+
+    @Override
+    public List<ProductionData> getProductionStatistics() {
+        return productionDataRepository.findAll();
+    }
+
 }

@@ -1,24 +1,22 @@
 package com.carbon.carbon.service;
 
 
+import com.carbon.carbon.pojo.*;
 import com.carbon.carbon.pojo.DTO.DataSummaryDTO;
 import com.carbon.carbon.pojo.DTO.EnergyOverviewDTO;
 import com.carbon.carbon.pojo.DTO.EnergyRatioDTO;
-import com.carbon.carbon.pojo.InventoryAlert;
-import com.carbon.carbon.pojo.OutBoundApply;
-import com.carbon.carbon.pojo.PurchaseContract;
-import com.carbon.carbon.pojo.PurchasePlan;
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CarbonService {
-
+//Task1
     /**
      *
-     * @param pageNum
-     * @param pageSize
+     * @param page
+     * @param size
      * @param billNo
      * @param businessType
      * @param customer
@@ -35,18 +33,18 @@ public interface CarbonService {
      */
 
     Page<OutBoundApply> queryOutboundApplyByPage(
-            Integer pageNum,
-            Integer pageSize,
+            Integer page,
+            Integer size,
             Integer billNo,
             String businessType,
             String customer,
             String applicant,
-            String applyDateStart,
-            String applyDateEnd,
+            LocalDate applyDateStart,
+            LocalDate applyDateEnd,
             String applyStatus,
             String auditor,
-            LocalDateTime auditDateStart,
-            LocalDateTime auditDateEnd,
+            LocalDate auditDateStart,
+            LocalDate auditDateEnd,
             String auditStatus,
             String status
     );
@@ -151,4 +149,23 @@ public interface CarbonService {
      * @return
      */
     DataSummaryDTO getDataSummary();
+
+    /**
+     *
+     * @return
+     */
+    List<SaleData> getSaleStatistics();
+
+    /**
+     *
+     * @return
+     */
+    List<SaleData> getSaleRanking();
+
+    /**
+     *
+     * @return
+     */
+    List<ProductionData> getProductionStatistics();
+
 }

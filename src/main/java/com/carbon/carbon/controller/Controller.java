@@ -1,19 +1,19 @@
 package com.carbon.carbon.controller;
 
+import com.carbon.carbon.DAO.SalesDataRepository;
 import com.carbon.carbon.ResponseMessage;
+import com.carbon.carbon.pojo.*;
 import com.carbon.carbon.pojo.DTO.DataSummaryDTO;
 import com.carbon.carbon.pojo.DTO.EnergyOverviewDTO;
 import com.carbon.carbon.pojo.DTO.EnergyRatioDTO;
-import com.carbon.carbon.pojo.InventoryAlert;
-import com.carbon.carbon.pojo.OutBoundApply;
-import com.carbon.carbon.pojo.PurchaseContract;
-import com.carbon.carbon.pojo.PurchasePlan;
 import com.carbon.carbon.service.CarbonService;
+import com.carbon.carbon.service.CarbonServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,22 +21,22 @@ import java.util.List;
 @RequestMapping("/api")
 public class Controller {
     @Autowired
-    private CarbonService carbonService;
+    private CarbonServiceImpl carbonService;
 
     @GetMapping("/outbound/apply/list")
     public ResponseEntity<Page<OutBoundApply>> getOutboundApplyByPage(
             @RequestParam(required = false)Integer page,
-            @RequestParam(required = false) Integer size,
+            @RequestParam(required = false)Integer size,
             @RequestParam(required = false)Integer billNo,
-            @RequestParam(required = false) String businessType,
+            @RequestParam(required = false)String businessType,
             @RequestParam(required = false)String customer,
             @RequestParam(required = false)String applicant,
-            @RequestParam(required = false)String applyDateStart,
-            @RequestParam(required = false)String applyDateEnd,
+            @RequestParam(required = false)LocalDate applyDateStart,
+            @RequestParam(required = false)LocalDate applyDateEnd,
             @RequestParam(required = false)String applyStatus,
             @RequestParam(required = false)String auditor,
-            @RequestParam(required = false)LocalDateTime auditDateStart,
-            @RequestParam(required = false)LocalDateTime auditDateEnd,
+            @RequestParam(required = false)LocalDate auditDateStart,
+            @RequestParam(required = false)LocalDate auditDateEnd,
             @RequestParam(required = false)String auditStatus,
             @RequestParam(required = false)String status){
         Page<OutBoundApply> outboundApplyPage= carbonService.queryOutboundApplyByPage(
@@ -50,7 +50,7 @@ public class Controller {
         return ResponseMessage.success(outboundApply);
     }
 
-   @GetMapping("/purchase/plan/list")
+    @GetMapping("/purchase/plan/list")
     public ResponseEntity<Page<PurchasePlan>> getPurchasePlanList(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size,
@@ -69,7 +69,7 @@ public class Controller {
         return ResponseEntity.ok(purchasePlansPage);
     }
 
-    @PostMapping("purchase/plan/auditOutboundApply")
+    @PostMapping("purchase/plan/audit")
     public ResponseMessage<PurchasePlan> auditPurchase(@RequestParam(name = "id")Integer id, @RequestParam("audit_status") String auditStatus,@RequestParam(required = false) String auditOpinion){
         PurchasePlan purchasePlan = carbonService.auditPurchase(id,auditStatus,auditOpinion);
         return ResponseMessage.success(purchasePlan);
@@ -93,7 +93,7 @@ public class Controller {
                 page,size,billNo,applicant,applyDateStart,applyDateEnd,applyStatus,auditor,auditDateStart,auditDateEnd,auditStatus);
         return ResponseEntity.ok(purchaseContract);
     }
-    @PostMapping("/purchase/contract/auditOutboundApply")
+    @PostMapping("/purchase/contract/audit")
     public ResponseMessage<PurchaseContract> auditPurchaseContract(@RequestParam("id") Integer id,@RequestParam String auditStatus,@RequestParam(required = false) String auditOpinion){
         PurchaseContract purchaseContract = carbonService.auditPurchaseContract(id,auditStatus,auditOpinion);
         return  ResponseMessage.success(purchaseContract);
@@ -117,4 +117,21 @@ public class Controller {
     public ResponseMessage<DataSummaryDTO> getDataSummary(){
         return ResponseMessage.success(carbonService.getDataSummary());
     }
+    //销售计划完成率接口（看不懂）
+    //@GetMapping("/visualization/sales/plan/completion")
+    @GetMapping("/visualization/sales/statistics")
+    public ResponseMessage<List<SaleData>>  getSaleStatistics(){
+        return ResponseMessage.success(carbonService.getSaleStatistics());
+    }
+    //销售排名Top8
+    @GetMapping("/visualization/sales/ranking")
+    public ResponseMessage<List<SaleData>> getSaleRanking(){
+        return ResponseMessage.success(carbonService.getSaleRanking());
+    }
+    //生产统计数据
+    @GetMapping("/visualization/production/statistics")
+    public ResponseMessage<List<ProductionData>>  getProductionStatistics(){
+        return ResponseMessage.success(carbonService.getProductionStatistics());
+    }
+
 }
