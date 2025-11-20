@@ -12,11 +12,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
-@RequestMapping("/api/sales/delivery")
+@RequestMapping("/api/sales")
 public class Task5Controller {
     @Autowired
     private Task5Service task5Service;
-    @GetMapping("/list")
+    @GetMapping("/delivery/list")
     public ResponseEntity<Page<SalesDelivery>> getSalesDeliveryPage(
             @RequestParam(required = false)Integer page,
             @RequestParam(required = false)Integer size,
@@ -27,7 +27,7 @@ public class Task5Controller {
             @RequestParam(required = false)LocalDateTime createTime){
     return ResponseEntity.ok(task5Service.getSalesDeliveryPage(page,size));
     }
-    @PostMapping("/update")
+    @PostMapping("/delivery/update")
     public ResponseMessage<SalesDelivery> updateDelivery(
             @RequestParam("id") Integer id,
             @RequestParam(required =false) String deliveryMethod,
@@ -46,7 +46,7 @@ public class Task5Controller {
                 contactPhone
         ));
     }
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delivery/delete")
     public ResponseMessage<SalesDelivery> deleteDelivery(@RequestParam("id") Integer id){
         task5Service.deleteDelivery(id);
         return ResponseMessage.success(null);

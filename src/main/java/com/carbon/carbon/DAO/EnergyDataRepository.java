@@ -9,25 +9,26 @@ import java.util.List;
 
 @Repository
 public interface EnergyDataRepository extends JpaRepository<EnergyData,Integer> {
-   @Query("SELECT SUM(electricity) FROM energy_data")
+   @Query("SELECT SUM(electricity) FROM EnergyData electricity、")
+
     Integer sumByElectricity();
-    @Query("SELECT SUM(water) FROM energy_data")
+    @Query("SELECT SUM(e.water) FROM EnergyData e")
     Integer sumByWater();
-    @Query("SELECT SUM(carbon) FROM energy_data")
+    @Query("SELECT SUM(e.carbon) FROM EnergyData e")
     Integer sumByCarbon();
-    @Query("SELECT SUM(office_water) FROM energy_data")
+    @Query("SELECT SUM(e.officeWater) FROM EnergyData e")
     Integer sumByOfficeWater();
-    @Query("SELECT SUM(office_electricity) FROM energy_data")
+    @Query("SELECT SUM(e.officeElectricity) FROM EnergyData e")
     Integer sumByOfficeElectricity();
-    @Query("SELECT SUM(production_water) FROM energy_data")
+    @Query("SELECT SUM(e.productionWater) FROM EnergyData e")
     Integer sumByProductionWater();
-    @Query("SELECT SUM(production_electricity) FROM energy_data")
+    @Query("SELECT SUM(e.productionElectricity) FROM EnergyData e")
     Integer sumByProductionElectricity();
-    @Query("SELECT SUM(carbon)FROM energy_data WHERE YEAR(NOW())")
+    @Query("SELECT SUM(e.carbon)FROM EnergyData e WHERE YEAR(e.date) = YEAR(NOW())")
     Integer sumCarbonByYear();
-    @Query("SELECT SUM(carbon)FROM energy_data WHERE MONTH(NOW())")
+    @Query("SELECT SUM(e.carbon)FROM EnergyData e WHERE YEAR(e.date) = MONTH(NOW())")
     Integer sumCarbonByMonth();
-    @Query("SELECT SUM(carbon)FROM energy_data WHERE DAY(NOW())")
+    @Query("SELECT SUM(e.carbon)FROM EnergyData e WHERE YEAR(e.date) = DAY(NOW())")
     Integer sumCarbonByDay();
     List<EnergyData> findFirst8ByOrderByCarbonDesc();
 }

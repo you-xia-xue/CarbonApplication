@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SalesDataRepository extends JpaRepository<SaleData,Integer> {
-    @Query("SELECT SUM(total_sales)FROM sales_data WHERE YEAR(NOW())")
+    @Query("SELECT SUM(e.totalSales)FROM SaleData e WHERE YEAR(e.date) = YEAR(NOW())")
     Integer sumSalesByYear();
-    @Query("SELECT SUM(total_sales)FROM sales_data WHERE MONTH(NOW())")
+    @Query("SELECT SUM(e.totalSales)FROM SaleData e WHERE MONTH(e.date) = MONTH(NOW())")
     Integer sumSalesByMonth();
-    @Query("SELECT SUM(total_sales)FROM sales_data WHERE DAY(NOW())")
+    @Query("SELECT SUM(e.totalSales)FROM SaleData e WHERE DAY(e.date) = DAY(NOW())")
     Integer sumSalesByDay();
 
     List<SaleData> findFirst8ByOrderByTotalSalesDesc();

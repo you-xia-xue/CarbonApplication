@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping(name = "/api/purchase/plan")
+@RequestMapping(name = "/api/purchase")
 public class Task2Controller{
     @Autowired
     Task2Service task2Service;
-    @GetMapping("/list")
+    @GetMapping("/plan/list")
     public ResponseEntity<Page<PurchasePlan>> getPurchasePlanList(
             @RequestParam(required = false) Integer page,
             @RequestParam(required = false) Integer size,
@@ -32,7 +32,7 @@ public class Task2Controller{
         Page<PurchasePlan> purchasePlansPage = task2Service.getPurchasePlanList(page,size);
         return ResponseEntity.ok(purchasePlansPage);
     }
-    @PostMapping("/audit")
+    @PostMapping("/plan/audit")
     public ResponseMessage<PurchasePlan> auditPurchase(
             @RequestParam(name = "id")Integer id,
             @RequestParam("audit_status") String auditStatus,

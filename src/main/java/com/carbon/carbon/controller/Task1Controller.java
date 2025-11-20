@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping("/api/outbound/apply")
+@RequestMapping("/api/outbound")
 public class Task1Controller {
     @Autowired
     private Task1Service task1Service;
-    @GetMapping("/list")
+    @GetMapping("/apply/list")
     public ResponseEntity<Page<OutBoundApply>> getOutboundApplyByPage(
             @RequestParam(required = false)Integer page,
             @RequestParam(required = false)Integer size,
@@ -36,7 +36,7 @@ public class Task1Controller {
         return ResponseEntity.ok(outboundApplyPage);
     }
 
-    @PostMapping("/audit")
+    @PostMapping("/apply/audit")
     public ResponseMessage<OutBoundApply> auditOutboundApply(
             @RequestParam("id") int id,
             @RequestParam("audit_status") String auditStatus,

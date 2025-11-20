@@ -21,6 +21,8 @@ public class EnergyData {
     private Integer carbon;
     @Column(name = "office_electricity")
     private Integer officeElectricity;
+    @Column(name = "office_water")
+    private Integer officeWater;
     @Column(name = "production_water")
     private Integer productionWater;
     @Column(name = "production_electricity")
@@ -72,6 +74,14 @@ public class EnergyData {
 
     public void setOfficeElectricity(Integer officeElectricity) {
         this.officeElectricity = officeElectricity;
+    }
+
+    public Integer getOfficeWater() {
+        return officeWater;
+    }
+
+    public void setOfficeWater(Integer officeWater) {
+        this.officeWater = officeWater;
     }
 
     public Integer getProductionWater() {
