@@ -17,16 +17,7 @@ public class Task3ServiceImpl implements Task3Service {
     @Override
     public Page<PurchaseContract> getPurchaseContractList(
             Integer page,
-            Integer size,
-            Integer billNo,
-            String applicant,
-            LocalDate applyDateStart,
-            LocalDate applyDateEnd,
-            String applyStatus,
-            String auditor,
-            LocalDate auditDateStart,
-            LocalDate auditDateEnd,
-            String auditStatus) {
+            Integer size) {
         if(page == null) page = 1;
         if(size == null) size = 10;
         Pageable pageable = PageRequest.of(

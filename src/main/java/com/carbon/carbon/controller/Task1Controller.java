@@ -31,14 +31,18 @@ public class Task1Controller {
             @RequestParam(required = false)LocalDate auditDateEnd,
             @RequestParam(required = false)String auditStatus,
             @RequestParam(required = false)String status){
-        Page<OutBoundApply> outboundApplyPage= task1Service.queryOutboundApplyByPage(
-                page,size,billNo,businessType,customer,applicant,applyDateStart,applyDateEnd,applyStatus,auditor,auditDateStart,auditDateEnd,auditStatus,status);
+        Page<OutBoundApply> outboundApplyPage= task1Service
+                .queryOutboundApplyByPage(page, size);
         return ResponseEntity.ok(outboundApplyPage);
     }
 
-    @PostMapping("/auditOutboundApply")
-    public ResponseMessage<OutBoundApply> auditOutboundApply(@RequestParam("id") int id, @RequestParam("audit_status") String auditStatus, @RequestParam(required = false) String auditOpinion){
-        OutBoundApply outboundApply = task1Service.auditOutboundApply(id,auditStatus,auditOpinion);
+    @PostMapping("/audit")
+    public ResponseMessage<OutBoundApply> auditOutboundApply(
+            @RequestParam("id") int id,
+            @RequestParam("audit_status") String auditStatus,
+            @RequestParam(required = false) String auditOpinion){
+        OutBoundApply outboundApply = task1Service
+                .auditOutboundApply(id,auditStatus,auditOpinion);
         return ResponseMessage.success(outboundApply);
     }
 }

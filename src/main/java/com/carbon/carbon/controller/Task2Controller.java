@@ -29,8 +29,7 @@ public class Task2Controller{
             @RequestParam(required = false) LocalDate auditDateEnd,
             @RequestParam(required = false) String auditStatus
     ){
-        Page<PurchasePlan> purchasePlansPage = task2Service.getPurchasePlanList(
-                page,size,billNo,applicant,applyDateStart,applyDateEnd,applyStatus,auditor,auditDateStart,auditDateEnd,auditStatus);
+        Page<PurchasePlan> purchasePlansPage = task2Service.getPurchasePlanList(page,size);
         return ResponseEntity.ok(purchasePlansPage);
     }
     @PostMapping("/audit")

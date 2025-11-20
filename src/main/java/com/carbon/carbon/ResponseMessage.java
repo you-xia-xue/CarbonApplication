@@ -4,7 +4,13 @@ public class ResponseMessage<T> {
     private Integer code;
     private String message;
     private T data;
+    public static <T> ResponseMessage<T> success(T data) {
+        return new ResponseMessage<T>(200,"操作成功",data);
+    }
 
+    public static <T> ResponseMessage<T> fail(Integer code, String message, T data) {
+        return new ResponseMessage<T>(code,message,null);
+    }
     public Integer getCode() {
         return code;
     }
@@ -34,7 +40,5 @@ public class ResponseMessage<T> {
         this.message = message;
         this.data = data;
     }
-    public static <T> ResponseMessage<T> success(T data) {
-        return new ResponseMessage<T>(200,"操作成功",data);
-    }
+
 }

@@ -29,11 +29,10 @@ public class Task3Controller {
             @RequestParam(required = false) LocalDate auditDateEnd,
             @RequestParam(required = false) String auditStatus
     ){
-        Page<PurchaseContract> purchaseContract = task3Service.getPurchaseContractList(
-                page,size,billNo,applicant,applyDateStart,applyDateEnd,applyStatus,auditor,auditDateStart,auditDateEnd,auditStatus);
+        Page<PurchaseContract> purchaseContract = task3Service.getPurchaseContractList(page,size);
         return ResponseEntity.ok(purchaseContract);
     }
-    @PostMapping("/auditOutboundApply")
+    @PostMapping("/audit")
     public ResponseMessage<PurchaseContract> auditPurchaseContract(@RequestParam("id") Integer id, @RequestParam String auditStatus, @RequestParam(required = false) String auditOpinion){
         PurchaseContract purchaseContract = task3Service.auditPurchaseContract(id,auditStatus,auditOpinion);
         return  ResponseMessage.success(purchaseContract);

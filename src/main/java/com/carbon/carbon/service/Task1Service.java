@@ -11,36 +11,12 @@ public interface Task1Service {
      *
      * @param page
      * @param size
-     * @param billNo
-     * @param businessType
-     * @param customer
-     * @param applicant
-     * @param applyDateStart
-     * @param applyDateEnd
-     * @param applyStatus
-     * @param auditor
-     * @param auditDateStart
-     * @param auditDateEnd
-     * @param auditStatus
-     * @param status
      * @return 操作成功返页对象
      */
 
     Page<OutBoundApply> queryOutboundApplyByPage(
             Integer page,
-            Integer size,
-            Integer billNo,
-            String businessType,
-            String customer,
-            String applicant,
-            LocalDate applyDateStart,
-            LocalDate applyDateEnd,
-            String applyStatus,
-            String auditor,
-            LocalDate auditDateStart,
-            LocalDate auditDateEnd,
-            String auditStatus,
-            String status
+            Integer size
     );
 
     /**

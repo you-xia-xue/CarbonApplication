@@ -16,21 +16,7 @@ import java.time.LocalDate;
 public class Task1ServiceImpl implements Task1Service{
     @Autowired
     OutBoundRepository outBoundRepository;
-    public Page<OutBoundApply> queryOutboundApplyByPage(
-            Integer page,
-            Integer size,
-            Integer billNo,
-            String businessType,
-            String customer,
-            String applicant,
-            LocalDate applyDateStart,
-            LocalDate applyDateEnd,
-            String applyStatus,
-            String auditor,
-            LocalDate auditDateStart,
-            LocalDate auditDateEnd,
-            String auditStatus,
-            String status) {
+    public Page<OutBoundApply> queryOutboundApplyByPage(Integer page, Integer size) {
         if (page == null) page = 1;
         if (size == null) size = 10;
         Pageable pageable = PageRequest.of(
@@ -38,7 +24,6 @@ public class Task1ServiceImpl implements Task1Service{
                 size,
                 Sort.by("id").descending()
         );
-        //此处应当有动态条件（后续补充）
         return outBoundRepository.findAll(pageable);
     }
     @Transactional

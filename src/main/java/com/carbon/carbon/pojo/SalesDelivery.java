@@ -20,9 +20,11 @@ public class SalesDelivery {
     @Column(name = "delivery_method")
     private String deliveryMethod;
     @Column(name = "delivery_date")
-    private LocalDateTime deliveryDate;
+    private LocalDate deliveryDate;
     @Column(name = "delivery_address")
     private String deliveryAddress;
+    @Column(name = "contact_person")
+    private String contactPerson;
     @Column(name = "contact_phone")
     private String contactPhone;
     @Column(name = "out_stock_status")
@@ -50,6 +52,14 @@ public class SalesDelivery {
         return contactPhone;
     }
 
+    public String getContactPerson() {
+        return contactPerson;
+    }
+
+    public void setContactPerson(String contactPerson) {
+        this.contactPerson = contactPerson;
+    }
+
     public void setContactPhone(String contactPhone) {
         this.contactPhone = contactPhone;
     }
@@ -62,11 +72,11 @@ public class SalesDelivery {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public LocalDateTime getDeliveryDate() {
+    public LocalDate getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(LocalDateTime deliveryDate) {
+    public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 

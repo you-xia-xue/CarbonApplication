@@ -19,16 +19,7 @@ public class Task2ServiceImpl implements Task2Service {
     @Override
     public Page<PurchasePlan> getPurchasePlanList(
             Integer page,
-            Integer size,
-            Integer billNo,
-            String applicant,
-            LocalDate applyDateStart,
-            LocalDate applyDateEnd,
-            String applyStatus,
-            String auditor,
-            LocalDate auditDateStart,
-            LocalDate auditDateEnd,
-            String auditStatus) {
+            Integer size) {
         if(page == null) page = 1;
         if(size == null) size = 10;
         Pageable pageable = PageRequest.of(
